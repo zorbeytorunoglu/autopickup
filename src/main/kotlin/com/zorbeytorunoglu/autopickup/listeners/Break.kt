@@ -29,6 +29,8 @@ class Break(private val plugin: AutoPickup): Listener {
             event.player.inventory.addItem(item)
         }
 
+        event.player.giveExp(event.expToDrop)
+
         event.block.type = Material.AIR
 
     }
