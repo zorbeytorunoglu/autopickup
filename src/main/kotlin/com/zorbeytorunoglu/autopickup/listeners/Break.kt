@@ -4,6 +4,7 @@ import com.zorbeytorunoglu.autopickup.AutoPickup
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.event.EventHandler
+import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import org.bukkit.event.block.BlockBreakEvent
 
@@ -13,12 +14,14 @@ class Break(private val plugin: AutoPickup): Listener {
         Bukkit.getServer().pluginManager.registerEvents(this,plugin)
     }
 
-    @EventHandler
+    @EventHandler (priority = EventPriority.MONITOR)
     fun blockBreakEvent(event: BlockBreakEvent) {
 
         if (!plugin.getConfigHandler().getAutoPickUpEnabled()) return
 
         if (!plugin.getAutoPickupEnabled().contains(event.player.name)) return
+
+        if (event.isCancelled) return
 
         if (plugin.getConfigHandler().getAutoPickUpBlacklist().contains(event.block.type.toString())) return
 
