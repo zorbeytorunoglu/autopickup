@@ -1,0 +1,15 @@
+name: AutoPickup
+version: 1.0.0
+api-version: 1.13
+author: thelegend
+main: com.zorbeytorunoglu.autopickup.AutoPickup
+commands:
+  autopickup:
+    description: Auto pickup command
+    aliases:
+      - autopick
+      - ap
+permissions:
+  autopickup.toggle:
+    description: Permission to toggle auto pickup
+    default: true

@@ -1,0 +1,10 @@
+auto-pickup:
+  enabled: true
+  blacklist:
+    - CHEST
+    - ENDER_CHEST
+messages:
+  no-permission: '&e&lAP &7You don''t have permission for this'
+  auto-pickup-enabled: '&e&lAP &7Auto pickup is now &aenabled'
+  auto-pickup-disabled: '&e&lAP &7Auto pickup is now &cdisabled'
+  only-players: '&e&lAP &7This command is only for players'
