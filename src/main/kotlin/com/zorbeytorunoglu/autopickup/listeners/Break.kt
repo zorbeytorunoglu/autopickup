@@ -1,7 +1,9 @@
 package com.zorbeytorunoglu.autopickup.listeners
 
 import com.zorbeytorunoglu.autopickup.AutoPickup
+import com.zorbeytorunoglu.autopickup.utils.StringUtils
 import org.bukkit.Bukkit
+import org.bukkit.GameMode
 import org.bukkit.Material
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
@@ -21,12 +23,20 @@ class Break(private val plugin: AutoPickup): Listener {
 
         if (!plugin.getAutoPickupEnabled().contains(event.player.name)) return
 
+        if (!plugin.getConfigHandler().getAutoPickUpEnabledInCreative() &&
+                event.player.gameMode == GameMode.CREATIVE) return
+
         if (event.isCancelled) return
 
         if (plugin.getConfigHandler().getAutoPickUpBlacklist().contains(event.block.type.toString())) return
 
         for (item in event.block.drops) {
-            event.player.inventory.addItem(item)
+            if (event.player.inventory.addItem(item).isNotEmpty()) {
+                event.block.world.dropItemNaturally(event.block.location,item)
+                if (plugin.getConfigHandler().getAutoPickupInventoryFullWarningEnabled())
+                    event.player.sendMessage(plugin.getConfigHandler().getAutoPickupInventoryFullWarningMessage())
+                continue
+            }
         }
 
         event.player.giveExp(event.expToDrop)

@@ -1,5 +1,11 @@
 auto-pickup:
   enabled: true
+  enable-on-join: true
+  enabled-in-creative: false
+  inventory-full:
+    warning:
+      enabled: true
+      message: '&e&lAP &7Your inventory is full'
   blacklist:
     - CHEST
     - ENDER_CHEST
