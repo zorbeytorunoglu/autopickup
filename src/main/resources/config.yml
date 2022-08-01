@@ -1,6 +1,5 @@
 auto-pickup:
   enabled: true
-  enable-on-join: true
   enabled-in-creative: false
   inventory-full:
     warning:
