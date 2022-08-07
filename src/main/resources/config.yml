@@ -5,6 +5,7 @@ auto-pickup:
     warning:
       enabled: true
       message: '&e&lAP &7Your inventory is full'
+      sound: none
   blacklist:
     - CHEST
     - ENDER_CHEST

@@ -22,4 +22,8 @@ class ConfigHandler(private val configContainer: ConfigContainer) {
         return configContainer.autoPickupInventoryFullWarningMessage
     }
 
+    fun getAutoPickupInventoryFullWarningSound(): String {
+        return configContainer.autoPickupInventoryFullWarningSound
+    }
+
 }

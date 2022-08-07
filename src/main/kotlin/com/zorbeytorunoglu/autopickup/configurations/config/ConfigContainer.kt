@@ -10,6 +10,7 @@ class ConfigContainer(configResource: Resource) {
     val autoPickupEnabledInCreative: Boolean
     val autoPickupInventoryFullWarningEnabled: Boolean
     val autoPickupInventoryFullWarningMessage: String
+    val autoPickupInventoryFullWarningSound: String
 
     init {
         this.autoPickupEnabled=configResource.getBoolean("auto-pickup.enabled")
@@ -17,6 +18,7 @@ class ConfigContainer(configResource: Resource) {
         this.autoPickupEnabledInCreative=configResource.getBoolean("auto-pickup.enabled-in-creative")
         this.autoPickupInventoryFullWarningEnabled=configResource.getBoolean("auto-pickup.inventory-full.warning.enabled")
         this.autoPickupInventoryFullWarningMessage=StringUtils.hex(configResource.getString("auto-pickup.inventory-full.warning.message")!!)
+        this.autoPickupInventoryFullWarningSound = configResource.getString("auto-pickup.inventory-full.warning.sound")!!
     }
 
 }

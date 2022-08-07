@@ -5,6 +5,7 @@ import com.zorbeytorunoglu.autopickup.utils.StringUtils
 import org.bukkit.Bukkit
 import org.bukkit.GameMode
 import org.bukkit.Material
+import org.bukkit.Sound
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
@@ -33,9 +34,15 @@ class Break(private val plugin: AutoPickup): Listener {
         for (item in event.block.drops) {
             if (event.player.inventory.addItem(item).isNotEmpty()) {
                 event.block.world.dropItemNaturally(event.block.location,item)
-                if (plugin.getConfigHandler().getAutoPickupInventoryFullWarningEnabled())
+                if (plugin.getConfigHandler().getAutoPickupInventoryFullWarningEnabled()) {
                     event.player.sendMessage(plugin.getConfigHandler().getAutoPickupInventoryFullWarningMessage())
-                continue
+                    if (plugin.getConfigHandler().getAutoPickupInventoryFullWarningSound() != "none") {
+                        event.player.playSound(event.player.location,
+                            Sound.valueOf(plugin.getConfigHandler().getAutoPickupInventoryFullWarningSound()),
+                        1.0F, 1.0F)
+                    }
+                    continue
+                }
             }
         }
 
